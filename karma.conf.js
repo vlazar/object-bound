@@ -12,7 +12,14 @@ module.exports = function(config) {
         flags: ['--no-sandbox']
       }
     },
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+    coverageReporter: {
+      type: 'lcov',
+      subdir: '.'
+    },
+    preprocessors: {
+      'lib/**/*.js': ['coverage']
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
