@@ -1,6 +1,6 @@
 {
   "name": "object-bound",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Object.prototype.bound",
   "main": "lib/object-bound.js",
   "directories": {
