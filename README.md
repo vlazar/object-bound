@@ -4,16 +4,23 @@ Object.prototype.bound
 
 > The opposite side of Function.prototype.bind
 
+As fast as possible: [70-90% speed of Function.prototype.bind](https://jsperf.com/object-bound)
+
 ## Usage
 
-**When I'm using Function.prototype.bind**
-
 ```javascript
-wow.much.dots.so.fancy.very.suit.bind(wow.much.dots.so.fancy.very)
-```
+var wow = { much: { dots: { so: { fancy: { very: {
+  suit: function() {
+    console.log(this.msg);
+  },
+  msg: 'Many compliments'
+}}}}}};
 
-**When I'm using Object.prototype.bound**
+// Function.prototype.bind:
+var bound = wow.much.dots.so.fancy.very.suit.bind(wow.much.dots.so.fancy.very);
+bound(); // 'Many compliments'
 
-```javascript
-wow.much.dots.so.fancy.very.bound("suit")
+// Object.prototype.bound:
+var bound = wow.much.dots.so.fancy.very.bound('suit');
+bound(); // 'Many compliments'
 ```
