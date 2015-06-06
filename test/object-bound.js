@@ -49,6 +49,18 @@ describe('Object bound', function() {
         obj.bound("foo", 1, 2);
         expect(spy).toHaveBeenCalledWith(obj.foo, obj, 1, 2);
 
+        obj.bound("foo", 1, 2, 3);
+        expect(spy).toHaveBeenCalledWith(obj.foo, obj, 1, 2, 3);
+
+        obj.bound("foo", 1, 2, 3, 4);
+        expect(spy).toHaveBeenCalledWith(obj.foo, obj, 1, 2, 3, 4);
+
+        obj.bound("foo", 1, 2, 3, 4, 5);
+        expect(spy).toHaveBeenCalledWith(obj.foo, obj, 1, 2, 3, 4, 5);
+
+        obj.bound("foo", 1, 2, 3, 4, 5, 6);
+        expect(spy).toHaveBeenCalledWith(obj.foo, obj, 1, 2, 3, 4, 5, 6);
+
         obj.bound("foo", 1, 2, 3, 4, 5, 6, 7);
         expect(spy).toHaveBeenCalledWith(obj.foo, obj, 1, 2, 3, 4, 5, 6, 7);
       });
