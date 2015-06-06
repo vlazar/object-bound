@@ -5,6 +5,7 @@ node_js:
 
 install:
   - npm install -g codeclimate-test-reporter
+  - npm install
 before_script:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
