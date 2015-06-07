@@ -4,11 +4,7 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/vlazar/object-bound.svg)](https://codeclimate.com/github/vlazar/object-bound)
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/vlazar/object-bound.svg)](https://codeclimate.com/github/vlazar/object-bound/coverage)
 
-Object.prototype.bound
-
-> The opposite side of Function.prototype.bind
-
-As fast as possible: [70-90% speed of Function.prototype.bind](https://jsperf.com/object-bound)
+Bind functions to objects with pleasure and a [tiny overhead](https://jsperf.com/object-bound)
 
 ## Usage
 
