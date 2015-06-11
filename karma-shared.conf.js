@@ -1,10 +1,6 @@
 module.exports = function(config) {
   config.set({
     frameworks: ['jasmine'],
-    files: [
-      'lib/**/*.js',
-      'test/**/*.js'
-    ],
     browsers: process.env.TRAVIS ? ['ChromeTravisCI'] : ['Chrome'],
     customLaunchers: {
       ChromeTravisCI: {
@@ -18,7 +14,7 @@ module.exports = function(config) {
       subdir: '.'
     },
     preprocessors: {
-      'lib/**/*.js': ['coverage']
+      '*.js': ['coverage']
     },
     port: 9876,
     colors: true,
