@@ -8,6 +8,8 @@ Bind functions to objects with pleasure and a [tiny overhead](https://jsperf.com
 
 ## Usage
 
+**Let's bind and call suit() from this object**
+
 ```javascript
 var wow = { much: { dots: { so: { fancy: { very: {
   suit: function() {
@@ -15,12 +17,30 @@ var wow = { much: { dots: { so: { fancy: { very: {
   },
   msg: 'Many compliments'
 }}}}}};
+```
 
-// Function.prototype.bind:
+**Function.prototype.bind**
+
+```javascript
 var bound = wow.much.dots.so.fancy.very.suit.bind(wow.much.dots.so.fancy.very);
 bound(); // 'Many compliments'
+```
 
-// Object.prototype.bound:
+**object-bound/function.js**
+
+```javascript
+// gives all Function.prototype.bind features
 var bound = wow.much.dots.so.fancy.very.bound('suit');
 bound(); // 'Many compliments'
+```
+
+**object-bound/property.js**
+
+```javascript
+// gives binding to object only, can't bind additional arguments
+var bound = wow.much.dots.so.fancy.very.bound.suit;
+bound(); // 'Many compliments'
+
+// bonus feature: it caches binding (e.g. bind/unbind event handlers easily)
+bound === wow.much.dots.so.fancy.very.bound.suit; // true
 ```
