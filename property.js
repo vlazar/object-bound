@@ -1,3 +1,8 @@
+/**
+ * Object.prototype.bound property: Cached function to object binding.
+ * Copyright (c) 2015 Vladislav Zarakovsky
+ * MIT license https://github.com/vlazar/object-bound/blob/master/LICENSE
+ */
 (function () {
   var defineProperty = Object.defineProperty
 

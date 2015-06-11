@@ -1,5 +1,5 @@
 /**
- * Object.prototype.bound: The opposite side of Function.prototype.bind.
+ * Object.prototype.bound() function: The opposite side of Function.prototype.bind.
  * Copyright (c) 2015 Vladislav Zarakovsky
  * MIT license https://github.com/vlazar/object-bound/blob/master/LICENSE
  *
