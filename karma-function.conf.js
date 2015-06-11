@@ -1,7 +1,7 @@
-var shared = require('./karma-shared.conf.js');
+var shared = require('./karma-shared.conf.js')
 
-module.exports = function(config) {
-  shared(config);
+module.exports = function (config) {
+  shared(config)
 
   config.set({
     files: [
@@ -15,5 +15,5 @@ module.exports = function(config) {
         { type: 'lcovonly', file: 'function.lcov.info' }
       ]
     }
-  });
-};
+  })
+}

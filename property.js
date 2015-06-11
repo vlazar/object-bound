@@ -1,29 +1,29 @@
-(function() {
-
-  var bind = Function.prototype.bind,
-    defineProperty = Object.defineProperty;
+(function () {
+  var defineProperty = Object.defineProperty
 
   defineProperty(Object.prototype, 'bound', {
     configurable: true,
     enumerable: false,
-    get: function() {
-      var self = this, bounded = {}, method;
+
+    get: function () {
+      var self = this, bounded = {}, method
 
       for (var key in self) {
-        method = self[key];
+        method = self[key]
         if (typeof method === 'function') {
-          bounded[key] = method.bind(self);
+          bounded[key] = method.bind(self)
         }
       }
 
       defineProperty(self, 'bound', {
-        configurable: true, 
+        configurable: true,
         enumerable: false,
+
         value: bounded
-      });
+      })
 
-      return bounded;
+      return bounded
     }
-  });
+  })
 
-})();
+})()

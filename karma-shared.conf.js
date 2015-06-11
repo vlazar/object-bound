@@ -1,4 +1,4 @@
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     frameworks: ['jasmine'],
     browsers: process.env.TRAVIS ? ['ChromeTravisCI'] : ['Chrome'],
@@ -17,5 +17,5 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     singleRun: false
-  });
-};
+  })
+}

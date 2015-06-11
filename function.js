@@ -6,44 +6,46 @@
  * It is very fast! Adds as little overhead as possible: https://jsperf.com/object-bound
  * Special thanks to an amazing https://github.com/codemix/fast.js
  */
-(function() {
+(function () {
+  var bind = Function.prototype.bind
 
-  var bind = Function.prototype.bind;
-
-  Object.prototype.bound = function(name) {
+  Object.prototype.bound = function (name) {
     var self = this,
-      len = arguments.length,
-      method = this[name];
+      method = self[name],
+      len = arguments.length
 
     // inlined version of applyWithContext() from fast.js
-    switch(len) {
+    switch (len) {
       case 0:
-        return bind.call(method);
+        return bind.call(method)
       case 1:
-        return bind.call(method, self);
+        return bind.call(method, self)
       case 2:
-        return bind.call(method, self, arguments[1]);
+        return bind.call(method, self, arguments[1])
       case 3:
-        return bind.call(method, self, arguments[1], arguments[2]);
+        return bind.call(method, self, arguments[1], arguments[2])
       case 4:
-        return bind.call(method, self, arguments[1], arguments[2], arguments[3]);
+        return bind.call(method, self, arguments[1], arguments[2], arguments[3])
       case 5:
-        return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4]);
+        return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4])
       case 6:
-        return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+        return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5])
       case 7:
-        return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+        return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6])
       case 8:
-        return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7]);
+        return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7])
 
       default:
         // inlined version of fastCloneArray() from fast.js
-        var args = new Array(len);
-        args[0] = self;
-        for (var i = 1; i < len; i++) args[i] = arguments[i];
+        var args = new Array(len)
 
-        return bind.apply(method, args);
+        for (var i = 1; i < len; i++) {
+          args[i] = arguments[i]
+        }
+        args[0] = self
+
+        return bind.apply(method, args)
     }
-  };
+  }
 
-})();
+})()
