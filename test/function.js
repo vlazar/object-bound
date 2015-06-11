@@ -7,6 +7,12 @@ describe('object-bound/function', function () {
     expect(typeof Object.prototype.bound).toBe('function')
   })
 
+  it('makes Object.prototype.bound non enumerable', function () {
+    var keys = []
+    for (var key in {}) keys.push(key)
+    expect(keys).not.toContain('bound')
+  })
+
   describe('Object.prototype.bound', function () {
     var spy
 
