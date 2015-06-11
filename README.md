@@ -3,6 +3,8 @@
 [![Build Status](https://img.shields.io/travis/vlazar/object-bound.svg)](https://travis-ci.org/vlazar/object-bound)
 [![Code Climate](https://img.shields.io/codeclimate/github/vlazar/object-bound.svg)](https://codeclimate.com/github/vlazar/object-bound)
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/vlazar/object-bound.svg)](https://codeclimate.com/github/vlazar/object-bound/coverage)
+[![devDependencies Status](https://img.shields.io/david/dev/vlazar/object-bound.svg)](https://david-dm.org/vlazar/object-bound#info=devDependencies)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 Bind functions to objects with pleasure and a [tiny overhead](https://jsperf.com/object-bound)
 
