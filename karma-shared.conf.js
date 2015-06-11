@@ -9,10 +9,6 @@ module.exports = function(config) {
       }
     },
     reporters: ['progress', 'coverage'],
-    coverageReporter: {
-      type: 'lcov',
-      subdir: '.'
-    },
     preprocessors: {
       '*.js': ['coverage']
     },

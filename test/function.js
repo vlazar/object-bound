@@ -1,4 +1,4 @@
-describe('Object bound', function() {
+describe('object-bound/function', function() {
   var obj;
 
   it('defines Object.prototype.bound', function() {

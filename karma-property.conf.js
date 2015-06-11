@@ -5,14 +5,14 @@ module.exports = function(config) {
 
   config.set({
     files: [
-      'function.js',
-      'test/function.js'
+      'property.js',
+      'test/property.js'
     ],
     coverageReporter: {
       subdir: '.',
       reporters: [
         { type: 'html' },
-        { type: 'lcovonly', file: 'function.lcov.info' }
+        { type: 'lcovonly', file: 'property.lcov.info' }
       ]
     }
   });
