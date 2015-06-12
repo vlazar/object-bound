@@ -46,6 +46,11 @@ bound(); // 'Many compliments'
 // the bound function is cached, no need to save the reference to it
 bound === wow.much.dots.so.fancy.very.bound.suit; // true
 
+// get new bound function with .bound.bound (it binds and caches again)
+var newBound = wow.much.dots.so.fancy.very.bound.bound.suit;
+newBound === bound; // false
+newBound == wow.much.dots.so.fancy.very.bound.suit; // true
+
 // caching simplifies working with event listeners
 class Greeter {
   constructor(el) {
