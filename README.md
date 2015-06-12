@@ -46,28 +46,25 @@ bound(); // 'Many compliments'
 // the bound function is cached, no need to save the reference to it
 bound === wow.much.dots.so.fancy.very.bound.suit; // true
 
-// get new bound function with .bound.bound (it binds and caches again)
+// use .bound.bound to get new bound function and cache it again
 var newBound = wow.much.dots.so.fancy.very.bound.bound.suit;
 newBound === bound; // false
-newBound == wow.much.dots.so.fancy.very.bound.suit; // true
+newBound === wow.much.dots.so.fancy.very.bound.suit; // true
 
 // caching simplifies working with event listeners
 class Greeter {
   constructor(el) {
     this.el = el;
     this.msg = 'Hi!';
-    this.on();
-  }
-  hi() {
-    console.log(this.msg);
-  }
-  on() {
     // no need to store the reference to 'this.bound.hi' here
     this.el.addEventListener('click', this.bound.hi);
   }
   off() {
     // remove event listener using the same 'this.bound.hi'
     this.el.removeEventListener('click', this.bound.hi);
+  }
+  hi() {
+    console.log(this.msg);
   }
 }
 
