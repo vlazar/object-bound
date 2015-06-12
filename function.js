@@ -12,7 +12,6 @@
 
   defineProperty(Object.prototype, 'bound', {
     configurable: true,
-    enumerable: false,
 
     value: function (name) {
       var self = this,

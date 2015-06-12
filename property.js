@@ -8,14 +8,12 @@
 
   defineProperty(Object.prototype, 'bound', {
     configurable: true,
-    enumerable: false,
     get: function () {
       var self = this,
         bounded = boundMethods(self)
 
       defineProperty(bounded, 'bound', {
         configurable: true,
-        enumerable: false,
         get: function () {
           return boundMethods(self)
         }
@@ -37,7 +35,6 @@
 
     defineProperty(obj, 'bound', {
       configurable: true,
-      enumerable: false,
       value: bounded
     })
 
