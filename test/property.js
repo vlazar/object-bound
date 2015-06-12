@@ -17,8 +17,8 @@ describe('object-bound/property', function () {
         b: 2,
         bar: function () { return this.b }
       }
-      spyFoo = spyOn(obj.foo, 'bind')
-      spyBar = spyOn(obj.bar, 'bind')
+      spyFoo = spyOn(obj.foo, 'bind').and.callThrough()
+      spyBar = spyOn(obj.bar, 'bind').and.callThrough()
     })
 
     it('binds all methods', function () {
@@ -33,6 +33,18 @@ describe('object-bound/property', function () {
 
       expect(foo).toBe(obj.bound.foo)
       expect(bar).toBe(obj.bound.bar)
+    })
+
+    it('re-caches on demand', function () {
+      var foo = obj.bound.foo
+      var bar = obj.bound.bar
+      var newFoo = obj.bound.bound.foo // .bound.bound triggers re-cache
+      var newBar = obj.bound.bar
+
+      expect(newFoo).not.toBe(foo)
+      expect(newFoo).toBe(obj.bound.foo)
+      expect(newBar).not.toBe(bar)
+      expect(newBar).toBe(obj.bound.bar)
     })
 
   })
