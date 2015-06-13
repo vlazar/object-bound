@@ -8,18 +8,8 @@
 
   defineProperty(Object.prototype, 'bound', {
     configurable: true,
-    get: function () {
-      var self = this,
-        bounded = boundMethods(self)
-
-      defineProperty(bounded, 'bound', {
-        configurable: true,
-        get: function () {
-          return boundMethods(self)
-        }
-      })
-
-      return bounded
+    get: function() {
+      return boundMethods(this)
     }
   })
 
@@ -32,6 +22,13 @@
         bounded[key] = method.bind(obj)
       }
     }
+
+    defineProperty(bounded, 'bound', {
+      configurable: true,
+      get: function() {
+        return boundMethods(obj)
+      }
+    })
 
     defineProperty(obj, 'bound', {
       configurable: true,

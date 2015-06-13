@@ -35,16 +35,20 @@ describe('object-bound/property', function () {
       expect(bar).toBe(obj.bound.bar)
     })
 
-    it('re-caches on demand', function () {
-      var foo = obj.bound.foo
-      var bar = obj.bound.bar
-      var newFoo = obj.bound.bound.foo // .bound.bound triggers re-cache
-      var newBar = obj.bound.bar
+    it('re-caches bound methods once', function () {
+      var oldBound = obj.bound
+      var newBound = obj.bound.bound // trigger re-cache
 
-      expect(newFoo).not.toBe(foo)
-      expect(newFoo).toBe(obj.bound.foo)
-      expect(newBar).not.toBe(bar)
-      expect(newBar).toBe(obj.bound.bar)
+      expect(newBound.foo).not.toBe(oldBound.foo)
+      expect(newBound.foo).toBe(obj.bound.foo)
+
+      expect(newBound.bar).not.toBe(oldBound.bar)
+      expect(newBound.bar).toBe(obj.bound.bar)
+    })
+
+    it('re-caches bound methods many times', function () {
+      expect(obj.bound.bound.foo).not.toBe(obj.bound.bound.foo)
+      expect(obj.bound.bound.bar).not.toBe(obj.bound.bound.bar)
     })
 
   })
