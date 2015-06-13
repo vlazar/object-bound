@@ -1,6 +1,6 @@
 {
   "name": "object-bound",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Object.prototype.bound",
   "main": "function.js",
   "directories": {
