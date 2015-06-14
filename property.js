@@ -4,30 +4,31 @@
  * MIT license https://github.com/vlazar/object-bound/blob/master/LICENSE
  */
 (function () {
-  var defineProperty = Object.defineProperty,
-    bound = 'bound'
+  var bound = 'bound'
+  var property = Object.defineProperty
 
-  defineProperty(Object.prototype, bound, {
+  property(Object.prototype, bound, {
     configurable: true,
     get: boundMethods
   })
 
   function boundMethods () {
-    var self = this,
-      cache = {},
-      method
+    var self = this
+    var cache = {}
+    var method
+    var name
 
-    for (var name in self) {
+    for (name in self) {
       if (typeof (method = self[name]) === 'function') {
         cache[name] = method.bind(self)
       }
     }
 
-    defineProperty(cache, bound, {
+    property(cache, bound, {
       get: boundMethods.bind(self)
     })
 
-    defineProperty(self, bound, {
+    property(self, bound, {
       configurable: true,
       value: cache
     })

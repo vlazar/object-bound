@@ -7,18 +7,18 @@
  * Special thanks to an amazing https://github.com/codemix/fast.js
  */
 (function () {
-  var bind = Function.prototype.bind,
-    defineProperty = Object.defineProperty
+  var bind = Function.prototype.bind
 
-  defineProperty(Object.prototype, 'bound', {
+  /* eslint-disable no-extend-native */
+  Object.defineProperty(Object.prototype, 'bound', {
     configurable: true,
     value: boundMethod
   })
 
   function boundMethod (name) {
-    var self = this,
-      method = self[name],
-      len = arguments.length
+    var len = arguments.length
+    var self = this
+    var method = self[name]
 
     // inlined version of applyWithContext() from fast.js
     switch (len) {
