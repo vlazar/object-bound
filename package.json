@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start karma-function.conf.js --single-run && ./node_modules/karma/bin/karma start karma-property.conf.js --single-run && ./node_modules/.bin/lcov-result-merger 'coverage/*.lcov.info' 'coverage/index.lcov.info'"
+    "test": "./node_modules/karma/bin/karma start karma-function.conf.js --single-run && ./node_modules/karma/bin/karma start karma-property.conf.js --single-run && ./node_modules/karma/bin/karma start karma-proxy.conf.js --single-run && ./node_modules/.bin/lcov-result-merger 'coverage/*.lcov.info' 'coverage/index.lcov.info'"
   },
   "repository": {
     "type": "git",
