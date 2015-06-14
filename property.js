@@ -5,35 +5,34 @@
  */
 (function () {
   var defineProperty = Object.defineProperty,
-    name = 'bound'
+    bound = 'bound'
 
-  defineProperty(Object.prototype, name, {
+  defineProperty(Object.prototype, bound, {
     configurable: true,
     get: boundMethods
   })
 
   function boundMethods () {
     var self = this,
-      bound = {},
+      cache = {},
       method
 
-    for (var key in self) {
-      method = self[key]
-      if (typeof method === 'function') {
-        bound[key] = method.bind(self)
+    for (var name in self) {
+      if (typeof (method = self[name]) === 'function') {
+        cache[name] = method.bind(self)
       }
     }
 
-    defineProperty(bound, name, {
+    defineProperty(cache, bound, {
       get: boundMethods.bind(self)
     })
 
-    defineProperty(self, name, {
+    defineProperty(self, bound, {
       configurable: true,
-      value: bound
+      value: cache
     })
 
-    return bound
+    return cache
   }
 
 })()
