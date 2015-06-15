@@ -6,11 +6,29 @@
 [![devDependencies Status](https://img.shields.io/david/dev/vlazar/object-bound.svg)](https://david-dm.org/vlazar/object-bound#info=devDependencies)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
-Bind functions to objects with pleasure.
+Convenient replacement for Function.prototype.bind
+
+## TL;DR
+
+**Replace this**
+
+```javascript
+wow.much.dots.so.fancy.very.suit.bind(wow.much.dots.so.fancy.very);
+wow.much.dots.so.fancy.very.suit.bind(wow.much.dots.so.fancy.very, '!');
+var cached = wow.much.dots.so.fancy.very.suit.bind(wow.much.dots.so.fancy.very);
+```
+
+**With this**
+
+```javascript
+wow.much.dots.so.fancy.very.bound('suit');
+wow.much.dots.so.fancy.very.bound('suit', '!');
+wow.much.dots.so.fancy.very.bound.suit;
+```
 
 ## Usage
 
-### Basic
+### Binding
 
 **Let's make a bound suit()**
 
@@ -31,8 +49,6 @@ var wow = { much: { dots: { so: { fancy: { very: {
 
 **Function.prototype.bind**
 
-Old-fashioned way. Ugly, especially with nested objects.
-
 ```javascript
 var boundSuit = wow.much.dots.so.fancy.very.suit.bind(wow.much.dots.so.fancy.very, '!');
 boundSuit(); // 'Many compliments!'
@@ -40,7 +56,7 @@ boundSuit(); // 'Many compliments!'
 
 **[object-bound/function.js](function.js)**
 
-Has all Function.prototype.bind features. Binds additional arguments.
+Has all Function.prototype.bind features and a nicer syntax.
 
 ```javascript
 var boundSuit = wow.much.dots.so.fancy.very.bound('suit', '!');
@@ -49,7 +65,7 @@ boundSuit(); // 'Many compliments!'
 
 **[object-bound/property.js](property.js)**
 
-Cached function to object binding. Clears cache on demand.
+Cached function binding. Clears cache on demand. No arguments binding.
 
 ```javascript
 var boundSuit = wow.much.dots.so.fancy.very.bound.suit;
@@ -58,9 +74,9 @@ boundSuit('!'); // 'Many compliments!'
 
 **[object-bound/proxy.js](proxy.js)**
 
-NOTE: [Needs ES6 Proxy to work](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+NOTE: Depends on [ES6 Proxy](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy), but works for non enumerable functions, unlike [object-bound/property.js](property.js).
 
-Cached function to object binding. Clears cache on demand. Works with non enumerable methods on native objects.
+Cached function binding. Clears cache on demand. No arguments binding.
 
 ```javascript
 var boundSuit = wow.much.dots.so.fancy.very.bound.suit;
@@ -69,12 +85,9 @@ boundSuit('!'); // 'Many compliments!'
 
 ### Caching
 
-Both [property.js](property.js) and [proxy.js](proxy.js) cache bound functions. It's convenient and very fast way to access object methods.
+Both [property.js](property.js) and [proxy.js](proxy.js) cache bound functions and can clear cache on demand.
 
-* ```.bound``` property binds and caches all functions on the same level at once
-* ```.bound``` proxy binds and caches functions one by one on demand
-
-There is no need to store a reference to the bound function.
+With caching there is no need to store a reference to the bound function anymore.
 
 ```javascript
 var boundSuit1 = wow.much.dots.so.fancy.very.bound.suit;
@@ -84,12 +97,14 @@ var boundSuit2 = wow.much.dots.so.fancy.very.bound.suit;
 boundSuit1 === boundSuit2; // true
 ```
 
+### Clear cache
+
 Use ```.bound.bound``` to get the new cached bound function.
 
 ```javascript
 var oldSuit = wow.much.dots.so.fancy.very.bound.suit;
 
-// to clear the cache use .bound.bound (it returns new bound method)
+// .bound.bound clears the cache and returns new bound function
 var newSuite = wow.much.dots.so.fancy.very.bound.bound.suit;
 oldSuit === boundSuit; // false
 
@@ -97,9 +112,9 @@ oldSuit === boundSuit; // false
 newSuite === wow.much.dots.so.fancy.very.bound.suit; // true
 ```
 
-###Typical property/proxy use case
+### Typical property/proxy use case
 
-Cached property/proxy simplifies working with event listeners.
+Cached bound functions simplify working with event listeners.
 
 ```javascript
 class Greeter {
