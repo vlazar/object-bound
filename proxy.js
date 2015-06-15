@@ -21,8 +21,7 @@
             cache = {}
             return proxy
           } else {
-            /* eslint-disable no-return-assign */
-            return (cache[name] = cache[name] || self[name].bind(self))
+            return cache[name] || (cache[name] = self[name].bind(self))
           }
         }
       })
