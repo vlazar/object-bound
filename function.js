@@ -16,12 +16,11 @@
   })
 
   function boundMethod (name) {
-    var len = arguments.length
     var self = this
     var method = self[name]
 
     // inlined version of applyWithContext() from fast.js
-    switch (len) {
+    switch (arguments.length) {
       case 0:
         return bind.call(method)
       case 1:
@@ -42,16 +41,28 @@
         return bind.call(method, self, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7])
 
       default:
-        // inlined version of fastCloneArray() from fast.js
-        var args = new Array(len)
-
-        for (var i = 1; i < len; i++) {
-          args[i] = arguments[i]
-        }
+        var args = fastCloneArguments.apply(null, arguments)
+        // not inlining this into fastCloneArguments gives better performance in Firefox
         args[0] = self
 
         return bind.apply(method, args)
     }
+  }
+
+  // Modified version of fastCloneArray() from fast.js for use with arguments.
+  // Use fastCloneArguments.apply(null, arguments), not fastCloneArguments(arguments)!
+  // See benchmark http://jsperf.com/fast-js-fastclonearray-with-arguments
+  // More details https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#what-is-safe-arguments-usage
+  function fastCloneArguments () {
+    var len = arguments.length,
+      args = new Array(len),
+      i
+
+    for (i = 0; i < len; i++) {
+      args[i] = arguments[i]
+    }
+
+    return args
   }
 
 })()
