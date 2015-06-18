@@ -24,16 +24,14 @@
       }
     }
 
-    property(cache, bound, {
-      get: boundMethods.bind(self)
-    })
-
     property(self, bound, {
       configurable: true,
       value: cache
     })
 
-    return cache
+    return property(cache, bound, {
+      get: boundMethods.bind(self)
+    })
   }
 
 })()
