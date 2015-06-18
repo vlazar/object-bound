@@ -3,11 +3,11 @@
  * Copyright (c) 2015 Vladislav Zarakovsky
  * MIT license https://github.com/vlazar/object-bound/blob/master/LICENSE
  */
-(function () {
+(function (object) {
   var bound = 'bound'
-  var property = Object.defineProperty
+  var property = object.defineProperty
 
-  property(Object.prototype, bound, {
+  property(object.prototype, bound, {
     configurable: true,
     get: boundMethods
   })
@@ -34,4 +34,4 @@
     })
   }
 
-})()
+})(Object)
