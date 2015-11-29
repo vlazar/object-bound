@@ -5,7 +5,7 @@ engines:
     enabled: true
 ratings:
   paths:
-  - **.js
+  - "**.js"
 exclude_paths:
 - karma-*.conf.js
 - test/**/*
