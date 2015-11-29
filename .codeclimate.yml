@@ -7,6 +7,6 @@ ratings:
   paths:
   - "**.js"
 exclude_paths:
-- karma-*.conf.js
+- karma*.conf.js
 - test/**/*
 - .*
